@@ -1,0 +1,40 @@
+KUBERNETES ARCHITECTURE
+-----------------------
+
+A. CONTROL PANE  COMPONENTS
+
+i) KUBE-APISERVER
+kube-apiserver is responsible for orchestrating all operations within the k8s cluster. it basically authenticates and validates a user request to create any resource.
+
+ii) ETCD
+kubernetes cluster's own database. entire cluster information is stored here in key-value format 
+
+iii) CONTROLLER MANAGER
+kube-controller-manager is responsible for running different types of controllers in the cluster. For e.g. Node controller is reponsible for taking care of nodes, performing health check on nodes to check it's availabilty.
+The other important controllers include replication controller, deployment controller, StatefulSet, Namespace Controller
+
+iv) SCHEDULER
+kube-scheduler continuously monitors apiserver for a pod/resource with unassigned node and finds the right node for your pod. it doesn't actually place the pod on node.
+kube-scheduler finds the right node among nodes using a priority function where it ranks all the nodes. your pod will be placed to a node with highest amount of resources(which will get the highest rank) left after placing your pod.
+
+B. WORKER COMPONENTS
+
+i) KUBELET
+kubelet is an agent that runs on each node which is actually responsible for creating and deleting of the resources.kubelet talks to container runtime to pull necessary images and dependecies to create the resourcde.
+kubelet monitors the availability of pods/other k8s resources and periodically report to api-server(the boss)
+NOTE: you should always manually install kubelet on worker nodes
+
+ii) KUBEPROXY
+kubeproxy is responsible for establishing communication between pods. it is a network proxy that runs on each nodes.
+it's job is look for a new services created & everytime a new service is created, it creates appropriate rules on each node to forward incoming requests to those resources.
+NOTE: kubeproxy is deployed as daemon-set in your k8s cluster
+
+KUBECTL
+-------
+kubectl is command line tool that user can use to interact with kubernetes cluster to create/delete/modify/describe any cluster resource
+
+
+THE FLOW
+---------
+
+Suppose you request cluster to create a pod ---> request will be authenticated & validated by api-server & info is stored in etcd ---> scheduler finds a pod with unassigned node & finds appropirate node. The information is again passed on to api-server, which inturn stores in etcd ---> api-server instructs the kubelet present on selected worker node to create resource ---> kubelet then instructs container runtime (docker) to pull necessary image and dependencies to deploy the application ---> kubelete updates status back to api server(will be stored in etcd again)
