@@ -7,11 +7,11 @@ i) KUBE-APISERVER
 kube-apiserver is responsible for orchestrating all operations within the k8s cluster. it basically authenticates and validates a user request to create any resource.
 
 ii) ETCD
-kubernetes cluster's own database. entire cluster information is stored here in key-value format 
+kubernetes cluster's own database. entire cluster information is stored here in key-value format.
 
 iii) CONTROLLER MANAGER
 kube-controller-manager is responsible for running different types of controllers in the cluster. For e.g. Node controller is reponsible for taking care of nodes, performing health check on nodes to check it's availabilty.
-The other important controllers include replication controller, deployment controller, StatefulSet, Namespace Controller
+The other important controllers include replication controller, deployment controller, StatefulSet, Namespace Controller.
 
 iv) SCHEDULER
 kube-scheduler continuously monitors apiserver for a pod/resource with unassigned node and finds the right node for your pod. it doesn't actually place the pod on node.
@@ -21,17 +21,17 @@ B. WORKER COMPONENTS
 
 i) KUBELET
 kubelet is an agent that runs on each node which is actually responsible for creating and deleting of the resources.kubelet talks to container runtime to pull necessary images and dependecies to create the resourcde.
-kubelet monitors the availability of pods/other k8s resources and periodically report to api-server(the boss)
-NOTE: you should always manually install kubelet on worker nodes
+kubelet monitors the availability of pods/other k8s resources and periodically report to api-server(the boss).
+NOTE: you should always manually install kubelet on worker nodes.
 
 ii) KUBEPROXY
 kubeproxy is responsible for establishing communication between pods. it is a network proxy that runs on each nodes.
 it's job is look for a new services created & everytime a new service is created, it creates appropriate rules on each node to forward incoming requests to those resources.
-NOTE: kubeproxy is deployed as daemon-set in your k8s cluster
+NOTE: kubeproxy is deployed as daemon-set in your k8s cluster.
 
 KUBECTL
 -------
-kubectl is command line tool that user can use to interact with kubernetes cluster to create/delete/modify/describe any cluster resource
+kubectl is command line tool that user can use to interact with kubernetes cluster to create/delete/modify/describe any cluster resource.
 
 
 THE FLOW
