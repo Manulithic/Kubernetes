@@ -1,0 +1,13 @@
+---
+apiVerson: v1   #apiVersion tells Kubernetes which API group and version to use to understand and process that resource.
+kind: Pod       #kind specifies type of object we're trying to create
+metadata:       #metadata is data abou the object like name, labels
+  name: myapp-pod
+  lables:
+    app: myapp
+    env: uat
+spec:           #spec,short for specifications, contains information like docker image, container name, port details etc
+  containers:
+   - name: nginx
+     image: nginx
+...
