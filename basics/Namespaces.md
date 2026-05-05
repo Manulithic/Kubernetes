@@ -34,6 +34,7 @@ kubectl get pods --all-namespaces
 v) To delete a namespace
 ```
 kubectl  delete ns <namespace-name>
+```
 
 vi) Creating namespace using yaml and limiting resources to your namespace
 ```
