@@ -8,8 +8,8 @@ ii) kube-system: All the resources/components required to make cluster work are 
 iii) kube-public: if you need to create any resource that should be readable by all users must be created in kube-public ns.
 
 
-Commands
---------
+COMMANDS:
+---------
 i) Command to list all namepaces
 ```
 kubectl get ns
