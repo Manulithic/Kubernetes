@@ -7,6 +7,21 @@ i) Default: All the resources created insider kubernetes cluster, without mentio
 ii) kube-system: All the resources/components required to make cluster work are created in this ns.
 iii) kube-public: if you need to create any resource that should be readable by all users must be created in kube-public ns.
 
+DNS WITHIN AND BETWEEN NAMESPACES
+---------------------------------
+
+resources within same namespace can refer to other namespace just by the service name. for example: postgresql-db-service
+
+if a resource from a namespace has to communicate or refer to a resource from other namespace, it should happen through FQDN:
+
+```
+<service-name>.<namespace-name>.svc.cluster.local
+
+for example:
+
+postgresql-db-service.dev.svc.cluster.local
+```
+
 
 COMMANDS:
 ---------
